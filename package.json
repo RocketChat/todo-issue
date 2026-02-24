@@ -1,9 +1,9 @@
 {
-  "name": "todo-issue",
+  "name": "todo-issue-rc",
   "version": "1.0.0",
   "description": "",
   "main": "lib/Entry.js",
-  "repository": "https://github.com/DerJuulsn/todo-issue.git",
+  "repository": "https://github.com/RocketChat/todo-issue.git",
   "scripts": {
     "test": "npm run build && jest",
     "build": "rm -rf lib && tsc",
@@ -17,7 +17,7 @@
     "action",
     "bot"
   ],
-  "author": "Julian Bildner",
+  "author": "Rocket.Chat",
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.6.0",

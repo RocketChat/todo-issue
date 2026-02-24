@@ -8,6 +8,8 @@ Huge thanks to [JasonEtco](https://github.com/JasonEtco)! After he decided to sh
 his [todo[bot]](https://todo.jasonet.co/) I've looked around for alternatives but decided to create a new
 implementation. Parts of his work can be found in this repository.
 
+also thanks to [Julian Bildner](https://github.com/Juulsn/) for https://github.com/Juulsn/todo-issue. We just forked to have more flexibility and short cycles in solve issues.
+
 ## Usage
 
 The **todo-issue** action is super easy to use. Once you've [set up the action](#setup), simply push some code (via
@@ -24,7 +26,7 @@ If I pushed this:
  * We already have a good one. But could it be even rounder?
  */
 function getWheel() {
-    // Returns you this pizza like thing
+  // Returns you this pizza like thing
 }
 ```
 
@@ -74,7 +76,7 @@ jobs:
       - name: Run Issue Bot
         uses: juulsn/todo-issue@main
         with:
-          excludePattern: '^(node_modules/)'
+          excludePattern: "^(node_modules/)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -82,7 +84,7 @@ jobs:
 ### Available options
 
 | Name              | Type                        | Description                                                                                                                                                                                                                                       | Default    |
-|-------------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| ----------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | `autoAssign`      | `boolean, string[], string` | Should **todo-issue** automatically assign a user to the new issue? If `true`, it'll assign whoever pushed the code. If a string, it'll assign that user by username. You can also give it an array of usernames or `false` to not assign anyone. | `true`     |
 | `keywords`        | `string[]`                  | The keyword(s) to use to generate issue titles                                                                                                                                                                                                    | `['TODO']` |
 | `bodyKeywords`    | `string[]`                  | If this is in the line right after the main keyword, it will become the generated issue body.                                                                                                                                                     | `[]`       |
@@ -131,6 +133,6 @@ would result in a new issue without a body because `//+` is not equal to `//-` (
 
 ### Task Systems
 
-Currently, the bot only supports GitHub Issues. However, all requests to the APIs are handled through an interface, 
+Currently, the bot only supports GitHub Issues. However, all requests to the APIs are handled through an interface,
 which makes it easy to support multiple.
 If you want to add support for another task system, you are welcome to contribute and / or file an issue
