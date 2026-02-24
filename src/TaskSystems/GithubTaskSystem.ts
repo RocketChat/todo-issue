@@ -37,33 +37,18 @@ export class GitHubTaskSystem implements ITaskSystem {
         debug(`Issue [${todo.title}] got ID ${todo.issueId}`)
     };
 
-    /**
-     *
-     * @param page
-     * @returns Up to 100 issues at a time
-     */
-    getIssuesInPage = async (page: number) =>
-        octokit.issues.listForRepo({
-            ...repoObject,
-            per_page: 100,
-            state: "all",
-            page
-        })
-
     getTodos = async () => {
         const existingTodos: Todo[] = [];
 
         let page = 0;
-        let next = true;
 
-        while (next) {
+        for await (const result of octokit.paginate.iterator(octokit.issues.listForRepo, {
+            ...repoObject,
+            per_page: 100,
+            state: "all",
+        })) {
 
-            debug(`Requesting issues... page ${page}`)
-
-            const result = await this.getIssuesInPage(page)
-
-            next = result.data.length === 100;
-            page++;
+            debug(`Requesting issues... page ${page++}`)
 
             await this.checkRateLimit()
 
